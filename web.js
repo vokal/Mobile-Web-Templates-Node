@@ -22,12 +22,13 @@ app.get('/', function(request, response) {
 
 app.get('/user/1/friends', function(request, response) {
     response.contentType('application/json');
-    response.header('Partial-Generated', Math.round(new Date().getTime() / 1000.0))
+    // response.header('Partial-Generated', Math.round(new Date().getTime() / 1000.0))
+    response.header('X-Partial-Generated', 1339610855)
 
     fs.readFile('views/friend.jade', 'ascii', function(error, data) {
         response.send({
             'html': jade.compile(data)(),
-            'friends': [
+            'resources': [
                 {
                     'friend': 'Bob',
                     'email': 'bob@email.net',
